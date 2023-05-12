@@ -13,16 +13,24 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
         //Add a Custom Validation Here
+        minlength: 3,
     },
     description: {
         type: String,
         required: true,
         //Add a Custom Validation Here
+        minlength: 10,
     },
     price: {
         type: Number,
         required: true,
         //Add a Custom Validation Here
+        validate: {
+      validator: function (value) {
+        return value > 0;
+      },
+      message: 'Price should be a positive number',
+    },
     },
     category: {
         type: String,
